@@ -2,16 +2,22 @@
 	<head>
 		<script>
 		var target = Math.round(Math.random()*100);
+		var gameHistory = [];
+		var gameOver = false;
 		var attempts = 0;
 		var message = "";
+		
 		function play(guess){
 			attempts++;
+			gameHistory[attempts+""] = guess;
 			if(guess > target)
 				message = "Aim Lower";  
 			else if(guess < target)
 				message = "Aim Higher";
-			else
+			else{
 				message = "You've got it!!!";
+				gameOver = true;
+			}
 		}
 		function playButtonClicked(){
 			var guess = document.getElementById("guess").value;
@@ -21,6 +27,18 @@
 			messageh2.innerHTML = message;
 			attemptsh3.innerHTML = "Attempts: " + attempts;
 			document.getElementById("guess").select();
+			if(gameOver){
+				displayGameHistory();
+			}
+		}
+		function displayGameHistory(){
+			var output = "";
+			for(var attempt in gameHistory){
+				var guess = gameHistory[attempt];
+				output += "Attempt: #" + attempt + "  -> " + guess;
+				output += "<br/>";
+			}
+			document.getElementById("gamehistory").innerHTML = output;
 		}
 		</script>
 	</head>	
@@ -33,6 +51,8 @@
 			<input type="button" value="Play" onclick="playButtonClicked();">
 			<h2 id="message"></h2>
 			<h3 id="attempts"></h3>
+		</section>	
+		<section id="gamehistory">
 		</section>	
 	</body>	
 </html>
