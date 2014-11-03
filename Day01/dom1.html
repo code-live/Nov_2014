@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<script>
+			function doSomething(){
+				var textbox = document.getElementById("name");
+				var name = textbox.value;
+				textbox.value = "Hi " + name;
+				console.log("Feeling sleepy");
+				var messageh1 = document.getElementById("message");
+				//messageh1.innerHTML = "Hi " + name; 
+				messageh1.innerHTML = "<input type='button' value='WTH is going on?'>";
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1 contenteditable>This is the scary post-lunch session</h1>
+		</header>	
+		<section>
+			<input type="text" id="name" placeholder="Name">
+			<input type="button" value="Click" 				onclick="doSomething();">
+			<h1 id="message"></h1>
+		</section><br/>
+		<footer>
+			Copyrights reserved to {Prabhu} for putting them to sleep
+		</footer>	
+	</body>		
+</html>
