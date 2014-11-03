@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<script>
+		var target = Math.round(Math.random()*100);
+		var attempts = 0;
+		var message = "";
+		function play(guess){
+			attempts++;
+			if(guess > target)
+				message = "Aim Lower";  
+			else if(guess < target)
+				message = "Aim Higher";
+			else
+				message = "You've got it!!!";
+		}
+		function playButtonClicked(){
+			var guess = document.getElementById("guess").value;
+			play(guess);
+			var messageh2 = document.getElementById("message");
+			var attemptsh3 = document.getElementById("attempts");
+			messageh2.innerHTML = message;
+			attemptsh3.innerHTML = "Attempts: " + attempts;
+			document.getElementById("guess").select();
+		}
+		</script>
+	</head>	
+	<body>
+		<header>
+			<h1>Welcome to the guessing game</h1>
+		</header>	
+		<section>
+			<input type="text" id="guess" placeholder="Enter your guess"><br/>
+			<input type="button" value="Play" onclick="playButtonClicked();">
+			<h2 id="message"></h2>
+			<h3 id="attempts"></h3>
+		</section>	
+	</body>	
+</html>
+
+
