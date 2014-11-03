@@ -1,0 +1,13 @@
+Create Ex2.js to implement the following.
+
+Create an array of 10 numbers, say 6,12,54,2,65,7,99,45,89,29
+
+Create a function called compute that can be used like this.
+compute(5) //Print the first five numbers in the array
+compute() //Print all the numbers
+compute("even")//Print all the even numbers in the array
+compute("odd")//Print all the odd numbers in the array
+compute(2,"even")//Print three even numbers
+compute(3,"odd")//Print three odd numbers
+compute("jkfdkdsfkj")//Print an error message
+compute(1,2,3,34,4)//Print an error message
