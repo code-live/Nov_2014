@@ -1,0 +1,8 @@
+Create an array that has the following key-values
+name  Sam
+age   12
+country India
+city Pune
+
+Iterate the array and print the array values in a  querystring format like this.
+?name=Sam&age=12&country=India&city=Pune
