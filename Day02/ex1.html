@@ -2,11 +2,13 @@
 	<head>
 		<script>
 			var citiesCollection = []; 
+			
 			function addCityButtonClicked(){
 				var city = document.getElementById("city").value;
 				addToCitiesCollection(city);
 				displayCities();
 			}
+			
 			function addToCitiesCollection(city){
 				var isCityAlreadyAvailable = false;
 				for(var i=0;i<citiesCollection.length;i++){
@@ -18,6 +20,7 @@
 				if(!isCityAlreadyAvailable)
 					citiesCollection.push(city);
 			}
+			
 			function displayCities(){
 				var cityDropDown = document.getElementById("cities");
 				var output = "";

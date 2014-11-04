@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<style>
+		.training {
+			border-width : 1px;
+			border-style : inset;
+			border-radius : 2px;
+			margin : 10px;
+		}
+		nav ul li {
+			display:inline;
+			text-decoration : underline;
+		}
+		aside {
+			color : red;
+			float : right;
+		}
+		header#mainheader {
+			font-size : 34px;
+		}
+		article header {
+			font-size:24px;
+		}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li>Home</li>
+				<li>Sessions</li>
+			</ul>	
+		</nav>	
+		<header id="mainheader">
+			Toughest part of the day
+		</header>
+		<fieldset>
+			<legend>Apply </legend>
+		<form>
+			<input required type="text" placeholder="firstname lastname">
+			<br/>
+			<label>Age</label>
+			<input required type="number" max="50" min="25">
+			<br/>
+			<label>Expected Salary</label>
+			<input type="range" max="1000000" min="50000">
+			<br/>
+			<label>Email</label>
+			<input type="email" required><br/>
+			<br/>
+			<label>Blog</label>
+			<input type="url" required><br/>
+			<label>Date of Birth</label>
+			<input type="date"><br/>
+			<input type="submit" value="Submit">
+		</form>
+		</fieldset>	
+		
+		
+			
+		<article class="training">
+			<header>Fore noon Session</header>	
+			<section>
+				Topics:
+				<ul>
+					<li>JavaScript</li>
+					<li>Higher-order functions</li>
+					<li>Functional style</li>
+				</ul>
+				<aside>Pretty cool!!!</aside>	
+			</section>	
+		</article>	
+		<article class="training">
+			<header>After noon Session</header>	
+			<section>
+				Topics:
+				<ul>
+					<li>HTML 5</li>
+					<li>CSS-3</li>
+					<li>Miscellaneous</li>
+				</ul>
+				<aside>Difficult to stay awake!!!</aside>	
+			</section>	
+		</article>	
+		<footer>
+			Copyrights reserved, 2014.
+		</footer>	
+	</body>		
+</html>
