@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<style>
+			section{
+				font-size:0px;
+			}
+		</style>
+		<script>
+			function slide(){
+				var sliderValue = document.getElementById("slider").value;
+				document.getElementById("message").style.fontSize = sliderValue + "px";
+			}
+		</script>
+	</head>
+	<body>
+		<input type="range" min="0" max="400" step="1" id="slider" value="0" oninput="slide();"><br/>
+		<section id="message">Simple</section>
+	</body>		
+</html>
