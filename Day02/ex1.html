@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<script>
+			var citiesCollection = []; 
+			function addCityButtonClicked(){
+				var city = document.getElementById("city").value;
+				addToCitiesCollection(city);
+				displayCities();
+			}
+			function addToCitiesCollection(city){
+				var isCityAlreadyAvailable = false;
+				for(var i=0;i<citiesCollection.length;i++){
+					if(citiesCollection[i] == city){
+						isCityAlreadyAvailable = true;
+						break;
+					}
+				}
+				if(!isCityAlreadyAvailable)
+					citiesCollection.push(city);
+			}
+			function displayCities(){
+				var cityDropDown = document.getElementById("cities");
+				var output = "";
+				for(var i=0;i<citiesCollection.length;i++){
+					output += "<option>" + citiesCollection[i] + "</option>";
+				}
+				cityDropDown.innerHTML = output;	
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="city" placeholder="City"><br/>
+		<input type="button" value="Add city" onclick="addCityButtonClicked();"><br/>
+		Cities<select id="cities"></select>
+	</body>		
+</html>
