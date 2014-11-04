@@ -1,0 +1,11 @@
+In Ex2.js create a function called 'math' which is a higher order function.
+math function has a list of 10 numbers. 
+12,4,56,3,123,74,8,3,234,987.
+
+What does math function do with these numbers? :). Now, you've to tell it as it's a higher order function.
+
+1) Ask math to print the even numbers
+2) Ask math to print the odd numbers
+3) Ask math to print the largest number
+
+If you don't have node.js, no problem. Create Ex2.html and write your code in the script tag and run it in the browser. Instead of console.log you can use alert() or document.write()
