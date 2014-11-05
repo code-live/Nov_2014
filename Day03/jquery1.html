@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function doSomething(){
+			var name = $("#name").val();
+			$("#message").html("Hello " + name);
+			$("#message").css("color","yellow");
+			$("#clickbutton").hide();
+		}
+		function init(){
+			$("#clickbutton").on("click",doSomething);
+		}
+		$().ready(init);//onload="init"
+		</script>
+	</head>	
+	<body>
+		<input type="text" id="name" placeholder="Name"><br/>
+		<input type="button" value="Click" id="clickbutton">
+		<h1 id="message"></h1>
+	</body>	
+</html>
