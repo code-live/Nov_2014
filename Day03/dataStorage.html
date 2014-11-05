@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script>
+		//setItem,getItem,removeItem
+		if(localStorage.getItem("welcome")){
+			alert(localStorage.getItem("welcome"));
+		}
+		else{
+			localStorage.setItem("welcome","Welcome to Pune");
+			alert("Just created welcome in LS");
+		}
+		if(sessionStorage.getItem("greetings")){
+			alert(sessionStorage.getItem("greetings"));
+		}
+		else{
+			sessionStorage.setItem("greetings","Welcome to Mobile training");
+			alert("Just created greetings in SS");
+		}
+		</script>
+	</head>	
+	<body>
+	</body>	
+</html>
