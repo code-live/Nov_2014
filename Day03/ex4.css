@@ -1,0 +1,16 @@
+#main {
+	font-size:3em;
+}
+#login {
+	padding : 15%;
+}
+#error {
+	color:red;
+	display : none;
+}
+#home {
+	display:none;
+}
+#home section{
+	float : right;
+}
