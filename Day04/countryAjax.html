@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		var xhr;
+		function callMe(){
+			if(xhr.readyState == 4){
+				var response = xhr.responseText;
+				$("#capital").html(response);
+			}
+		}
+		function connectToServer(){
+			xhr = new XMLHttpRequest();
+			var url = "World?country=" + $("#country").val();
+			xhr.open("GET",url);
+			xhr.onreadystatechange = callMe;
+			xhr.send();
+		}
+		$().ready(function(){
+			$("input:button").on("click",connectToServer);
+		});
+		</script>
+	</head>	
+	<body>
+		<input type="text" 
+				placeholder="Country" id="country"><br/>
+		<input type="button" value="Get Info">
+		<h1 id="capital"></h1>	
+	</body>	
+</html>
