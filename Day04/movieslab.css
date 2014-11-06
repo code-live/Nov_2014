@@ -1,0 +1,14 @@
+aside {
+	float:right;
+	position : relative;
+	top:-20;
+	right:40;
+}
+
+#message {
+	display:none;
+}
+
+#movielist {
+	display:none;
+}
