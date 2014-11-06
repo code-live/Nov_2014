@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<style>
+		.yell {
+			background-color : yellow;
+		}
+		.hell {
+			background-color : pink;
+		}
+		</style>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function domManipulation(){
+			$(this).parent().before("<input type='text'>");
+			$("input:text").addClass("hell");
+			$(this).parent().after("<input type='radio'>");
+			//$(this).parent().remove();
+		}
+		$().ready(function(){
+			$("input:button")
+				.on("click",domManipulation)
+				.addClass("yell");
+		});
+		</script>
+	</head>
+	<body>
+		<section>
+			This is section 1
+			<input type="button" value="DOM">
+		</section>
+	</body>	
+</html>		
