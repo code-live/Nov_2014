@@ -10,6 +10,7 @@ function populateMovieCollectionFromLocalStorage(){
 	}
 }
 function init(){
+	$("#moviename").on("click",function(){$("#message").html("");});
 	$("input:button").on("click",addMovie);
 	$("#allmovies").on("click",listMoviesClicked);
 	if(localStorage)
