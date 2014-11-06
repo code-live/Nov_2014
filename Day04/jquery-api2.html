@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+			$().ready(function(){
+				$("section").each(function(){
+					console.log($(this).text());
+				});
+				console.log($("section").text());
+			})
+		</script>
+	</head>
+	<body>
+		<section>Section 1</section>
+		<section>Section 2</section>
+		<section>Section 3</section>
+	</body>
+</html>		

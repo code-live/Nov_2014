@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function buttonClicked(){
+			$("input:text").attr("disabled","disabled");
+		}
+		function ipaddressEntered(){
+			if($(this).val().length == 3)
+				$(this).next().focus();
+		}
+		$().ready(function(){
+			$("input:text")
+				.css("width","40")
+				.attr("maxlength","3")
+				.on("keyup",ipaddressEntered);	
+			$("#clickbutton").on("click",buttonClicked);		})
+		</script>
+	</head>
+	<body>
+		IP Address: <input type="text" id="part1">.
+		<input type="text" id="part2">.
+		<input type="text" id="part3">.
+		<input type="text" id="part4">
+		<input type="button" id="clickbutton" value="Click">
+	</body>
+</html>			
