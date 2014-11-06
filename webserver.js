@@ -24,9 +24,10 @@ function sendFile(fileName,response){
 server.listen(8080);
 console.log("Server is running and waiting for requests");
 
-
 function getInfo(request,response){
-	var queryString = require("url").parse(request.url,true).query;
+	var queryString = require("url")
+					.parse(request.url,true)
+					.query;
 	var country = queryString.country;
 	var output = "Not available in DB";
 	if(country == "India")
