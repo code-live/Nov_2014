@@ -5,6 +5,9 @@ var server = http.createServer(function(request,response){
 	if(url == "/"){
 		response.end("index.html not found");
 	}
+	else if(url.match(/World/) != null){
+		getInfo(request,response);
+	}
 	else{
 		var fileName = url.substring(1);
 		sendFile(fileName,response);
@@ -20,3 +23,17 @@ function sendFile(fileName,response){
 }
 server.listen(8080);
 console.log("Server is running and waiting for requests");
+
+
+function getInfo(request,response){
+	var queryString = require("url").parse(request.url,true).query;
+	var country = queryString.country;
+	var output = "Not available in DB";
+	if(country == "India")
+		output = "New Delhi";
+	else if(country == "USA")
+		output = "Washington DC";
+	else if(country == "UK")
+		output = "London";
+	response.end(output);	
+}
