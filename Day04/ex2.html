@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function part1_keyup(){
+			if($("#part1").val().length == 3 && 
+				!isNaN($("#part1").val()))
+				$("#part2").focus();
+		}
+		function part2_keyup(){
+			if($("#part2").val().length == 3 && 
+				!isNaN($("#part2").val()))
+					$("#part3").focus();
+		}
+		function part3_keyup(){
+			if($("#part3").val().length == 3 && 
+				!isNaN($("#part3").val()))
+				$("#part4").focus();
+		}
+		function part4_keyup(){
+			if($("#part4").val().length == 3 && 
+				!isNaN($("#part4").val()))
+				$("#clickbutton").focus();
+		}
+		function buttonClicked(){
+			$("#part1,#part2,#part3,#part4").attr("disabled","disabled");
+		}
+		$().ready(function(){
+			$("input:text")
+						.css("width","40")
+						.attr("maxlength","3");
+						
+			$("#part1").on("keyup",part1_keyup);
+			$("#part2").on("keyup",part2_keyup);
+			$("#part3").on("keyup",part3_keyup);
+			$("#part4").on("keyup",part4_keyup);	
+			$("#clickbutton").on("click",buttonClicked);		
+		})
+		</script>
+	</head>
+	<body>
+		IP Address: <input type="text" id="part1">.
+		<input type="text" id="part2">.
+		<input type="text" id="part3">.
+		<input type="text" id="part4">
+		<input type="button" id="clickbutton" value="Click">
+	</body>
+</html>			
