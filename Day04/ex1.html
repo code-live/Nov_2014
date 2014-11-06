@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script>
+		function $(){
+			var obj = {
+				ready : function(arg){
+					arg();
+				}
+			};
+			return obj;
+		}
+		//MAKE THIS CODE WORK WITHOUT ADDING jQuery js file
+		$().ready(init);
+		
+		function init(){
+			alert("Hello World");
+		}
+		</script>
+	</head>	
+</html>

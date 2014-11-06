@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function buttonClicked(){
+			var rnd = Math.random()*1000;
+			$("#rnd").val(rnd);
+			console.log($("#rnd").val());
+			
+			var text = $("#para1").text();
+			text += " " + rnd;
+			$("#para1").text(text);
+			
+			$("#para1").css("color","red");
+			console.log($("#para1").css("color"));
+		}
+
+		$().ready(function(){
+			$("#clickbutton").on("click",buttonClicked);
+		});
+		</script>
+	</head>
+	<body>
+		<p id="para1"></p>
+		<input type="text" id="rnd" placeholder="random number"><br/>
+		<input type='button' id="clickbutton" value="Click">
+	</body>	
+</html>	
