@@ -1,0 +1,31 @@
+create the following before you proceed reading.
+stocks.html,stocks.js,stocks.css
+******
+1) You have a collection of stock symbols.
+"MS", "GOOG", "INTC", "AAPL", "GM", "FB", "INFY", "HP"
+
+2)You will send AJAX requests to the following url by passing each and every symbol.
+
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22SYMBOL%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json
+
+If you replace the SYMBOL with INFY or FB you will get a JSON output. Study the JSON output.
+Look for
+
+query.results.quote.LastTradePriceOnly (this will give the stock price)
+query.results.quote.Change  (this will give the change w.r.t the previous value)
+
+Display these values in the table.
+
+If the Change is positive display the value in GREEN color and if the Change is a negative value display the value in RED color.
+
+Look at the image file Ex1.png that shows the screenshot.
+
+4) Every 30 seconds you will go and fetch new values by connecting to the service.
+
+Note:
+Copy paste the url in the browser and study the JSON output. It shows the current stock price of Facebook.
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22FB%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json
+
+(Copy-Paste the JSON output to jsonlint.com and click validate function to see a clean formatted output)
