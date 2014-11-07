@@ -3,7 +3,10 @@ var fs = require("fs");
 var server = http.createServer(function(request,response){
 	var url = request.url;
 	if(url == "/"){
-		response.end("index.html not found");
+		response.end("index.html not fjquery-2.1.1.min.jsound");
+	}
+	else if(url.match(/Timer/) != null){
+		response.end(new Date() + "");
 	}
 	else if(url.match(/World/) != null){
 		getInfo(request,response);

@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function callMe(response){
+			$("#capital").html(response);
+		}
+		function connectToServer(){
+			$.ajax({
+				url : "World",
+				method : "GET",
+				data : {
+					country : $("#country").val()
+				},
+				success : callMe
+			});
+		}
+		function getTime(){
+			$.ajax({
+				url : "Timer",
+				success : function(response){
+					$("#time").html(response);
+				}
+			});
+		}
+		$().ready(function(){
+			window.setInterval("getTime()",1000);	
+			$("input:button").on("click",connectToServer);
+		});
+		</script>
+	</head>	
+	<body>
+		<h1 id="time"></h1>
+		<input type="text" 
+				placeholder="Country" id="country"><br/>
+		<input type="button" value="Get Info">
+		<h1 id="capital"></h1>	
+	</body>	
+</html>
