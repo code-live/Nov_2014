@@ -3,12 +3,15 @@
 		<script src="jquery-2.1.1.min.js"></script>
 		<script>
 		function callMe(response){
-			$("#capital").html(response);
+			//var obj = JSON.parse(response);
+			//$("#capital").html(obj.capital);
+			$("#capital").html(response.capital);
 		}
 		function connectToServer(){
 			$.ajax({
 				url : "World",
 				method : "GET",
+				dataType : "json",
 				data : {
 					country : $("#country").val()
 				},
