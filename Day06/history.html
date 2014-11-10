@@ -11,18 +11,22 @@
 				EnteredName : name
 			};
 			var newUrl = pathname + "/" + name;
-			window.history.pushState(data,"title",newUrl);
+			window.history.pushState(data,"some title value",newUrl);
 		}
 		function backOrForwardButtonIsClicked(e){
 			var data = e.state;
-			var name = data.EnteredName;
-			var message = "Hello " + name;
-			$("#name").val(name);
-			$("#message").html(message);
+			if(data){
+				var name = data.EnteredName;
+				var message = "Hello " + name;
+				$("#name").val(name);
+				$("#message").html(message);
+			}
 		}
 		$().ready(function(){
 			$("input:button").on('click',sayHello);
 			window.onpopstate = backOrForwardButtonIsClicked;
+
+			//backOrForwardButtonIsClicked("Monday");
 		});
 		</script>
 	</head>	

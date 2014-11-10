@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<style>
+		table {
+			display : none;
+		}
+		</style>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		var GLOBAL = {
+			personCollection : []
+		};
+		function addButtonClicked(){
+			$("table").css("display","block");
+			var obj = {
+				name : $("#name").val(),
+				age : $("#age").val()
+			}
+			GLOBAL.personCollection.push(obj);
+			var data = {
+				personCollection : GLOBAL.personCollection
+			};
+			window.history.pushState(data);
+			displayPersons(GLOBAL.personCollection);
+		}
+		function displayPersons(collection){
+			var rows = "";
+			for(var i=0;i<collection.length;i++){
+				rows += "<tr>";
+				rows += "<td>" + collection[i].name + "</td>";
+				rows += "<td>" + collection[i].age + "</td>";
+				rows += "</tr>";
+			}
+			$("tbody").html(rows);
+		}
+		function backOrForwardClicked(e){
+			if(e.state){
+				displayPersons(e.state.personCollection);
+			}
+		}
+		$().ready(function(){
+			$("input:button").on("click",addButtonClicked);
+			window.onpopstate = backOrForwardClicked;
+		})
+		</script>
+	</head>
+	<body>
+		<fieldset>
+			<input type="text" placeholder="Name" id="name"><br/>
+			<input type="number" placeholder="Age" id="age"><br/><br/>
+			<input type="button" value="Add">
+		</fieldset>	<br/>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Age</th>	
+				</tr>
+				<tbody>
+				</tbody>		
+			</thead>	
+		</table>	
+	</body>	
+</html>		
