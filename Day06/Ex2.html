@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css">
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.mobile-1.4.2.min.js"></script>
+		<script>
+		function authenticate(){
+			//After authentication
+			$("body").pagecontainer("change","#home");
+		}
+		$().ready(function(){
+			$("#loginbutton").on("click",authenticate);
+		})
+		</script>
+	</head>
+	<body>
+		<section data-role="page" id="login">
+			<section data-role="header">
+				<h2>Accenture</h2>
+			</section>
+			<section data-role="content">
+				<input type="text" placeholder="User name">
+				<input type="password" placeholder="Password">
+				<button id="loginbutton">Login</button>
+			</section>
+		</section>	
+		<section data-role="page" id="home">
+			<section data-role="header">
+				<h2>Welcome</h2>
+				<a href="#settings" class="ui-btn-right">Settings</a>
+			</section>
+			<section data-role="content">
+			</section>
+		</section>
+		<section data-role="page" id="settings">
+			<section data-role="header" data-add-back-btn="true" data-back-btn-text="Home">
+				<h2>Settings</h2>
+			</section>
+			<section data-role="content">
+			</section>
+		</section>
+	</body>
+</html>		

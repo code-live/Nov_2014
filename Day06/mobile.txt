@@ -1,0 +1,31 @@
+Mobile native applications
+	installables
+	executables
+	Android (.apk), iOS(.ipa), Windows Phones(.xap)
+	Eclipse->Java->Android SDK -> .apk
+	XCode->Objective-C/Swift->Cocoa Touch -> .ipa
+	Visual Studio->C#->Windows Phone SDK -> .xap
+	
+	HTML 5 + JavaScript (jQM or Sencha Touch)
+	.html file
+	Use a tool like PhoneGap or Appcelerator
+	which will generate .apk/ipa/xap files
+	
+	
+	
+Mobile web applications
+	open your browser in your mobile
+	access the site
+	
+
+HTML 5
+	Local Storage
+	Session Storage
+	new UI tags
+	History API
+	
+Copy these to Day06 folder
+
+jquery.mobile-1.4.2.min.css
+jquery.mobile-1.4.2.min.js	
+[images] folder

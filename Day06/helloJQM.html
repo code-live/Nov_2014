@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css">
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.mobile-1.4.2.min.js"></script>
+		<script>
+		function goToPage2(){
+			$("body").pagecontainer("change","#page2");	
+		}
+		
+		$().ready(function(){
+			$("#clickbutton").on("click",goToPage2);
+		})
+		</script>	
+	</head>
+	<body>
+		<section data-role="page" id="page1">
+			<section data-role="header">
+				Page I
+			</section>	
+			<section data-role="content">
+				Main contents
+				<input type="button" value="Click" id="clickbutton">
+			</section>	
+			<section data-role="footer">
+				copyrights reserved.
+			</section>	
+		</section>
+
+		<section data-role="page" id="page2">
+			<section data-role="header">
+				Page II
+			</section>	
+			<section data-role="content">
+				Main contents
+			</section>	
+			<section data-role="footer">
+				copyrights reserved.
+			</section>
+		</section>	
+	</body>		
+</html>
