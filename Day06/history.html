@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		var pathname = window.location.pathname;
+		function sayHello(){
+			var name =$("#name").val();
+			var message = "Hello " + name;
+			$("#message").html(message);
+			var data = {
+				EnteredName : name
+			};
+			var newUrl = pathname + "/" + name;
+			window.history.pushState(data,"title",newUrl);
+		}
+		function backOrForwardButtonIsClicked(e){
+			var data = e.state;
+			var name = data.EnteredName;
+			var message = "Hello " + name;
+			$("#name").val(name);
+			$("#message").html(message);
+		}
+		$().ready(function(){
+			$("input:button").on('click',sayHello);
+			window.onpopstate = backOrForwardButtonIsClicked;
+		});
+		</script>
+	</head>	
+	<body>
+		<input type="text" placeholder="Name" id="name">
+		<input type="button" value="Hello">
+		<h1 id="message"></h1>
+	</body>	
+</html>
