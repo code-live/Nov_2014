@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css">
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.mobile-1.4.2.min.js"></script>
+		<script>
+		function displayCities(response){
+			var list = "";
+			for(var i=0;i<response.length;i++){
+				list += "<li>" + response[i] + "</li>";
+			}
+			$("#citieslist").html(list);
+			$("#citieslist").listview("refresh");
+			$("li").on("tap",cityListItemTapped);
+		}
+		function cityListItemTapped(){
+			var city = $(this).text();
+			$("#cityheader").text(city);
+			$("body").pagecontainer("change","#citypage");
+		}
+		function loadCities(){
+			$.ajax({
+				url : "Cities",
+				dataType : "json",
+				success : displayCities
+			});
+		}
+		$().ready(function(){
+			loadCities();
+		});
+		</script>
+	</head>
+	<body>
+		<section data-role="page" id="citylistpage">
+			<section data-role="header">
+				<h4>Cities</h4>
+			</section>
+			<section data-role="content">
+				<ul id="citieslist" data-role="listview">
+				</ul>	
+			</section>	
+		</section>
+		<section data-role="page" id="citypage">
+			<section data-role="header" data-add-back-btn="true" data-back-btn-text="View All">
+				<h4 id="cityheader"></h4>
+			</section>
+			<section data-role="content">
+				
+			</section>	
+		</section>	
+	</body>		
+</html>
