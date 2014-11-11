@@ -4,6 +4,9 @@
 		<script src="jquery-2.1.1.min.js"></script>
 		<script src="jquery.mobile-1.4.2.min.js"></script>
 		<script>
+		var GLOBAL = {
+			liToBeDeleted : null
+		};
 		function displayCities(response){
 			var list = "";
 			for(var i=0;i<response.length;i++){
@@ -12,6 +15,18 @@
 			$("#citieslist").html(list);
 			$("#citieslist").listview("refresh");
 			$("li").on("tap",cityListItemTapped);
+			$("li").on("taphold",cityListItemTapHold);
+		}
+		function cityListItemTapHold(){
+			GLOBAL.liToBeDeleted = $(this);
+			$("#deletepopup").popup("open");
+		}
+		function deleteCity(){
+			GLOBAL.liToBeDeleted.remove();
+			$("#deletepopup").popup("close")
+		}
+		function doNotDeleteCity(){
+			$("#deletepopup").popup("close")
 		}
 		function cityListItemTapped(){
 			var city = $(this).text();
@@ -27,6 +42,8 @@
 		}
 		$().ready(function(){
 			loadCities();
+			$("#yesbutton").on("tap",deleteCity);
+			$("#nobutton").on("tap",doNotDeleteCity);
 		});
 		</script>
 	</head>
@@ -36,9 +53,15 @@
 				<h4>Cities</h4>
 			</section>
 			<section data-role="content">
+				<section data-role="popup" id="deletepopup" data-dismissible="false" data-position-to="window">
+					Do you want to delete this city?<br/>
+					<input type="button" value="Yes" id="yesbutton">
+					<input type="button" value="No" id="nobutton">
+				</section>	
 				<ul id="citieslist" data-role="listview">
 				</ul>	
-			</section>	
+			</section>
+				
 		</section>
 		<section data-role="page" id="citypage">
 			<section data-role="header" data-add-back-btn="true" data-back-btn-text="View All">
