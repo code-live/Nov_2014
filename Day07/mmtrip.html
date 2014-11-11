@@ -1,0 +1,156 @@
+<html>
+	<head>
+		<style>
+		#destination {
+			margin-top : 10%;
+		}
+		.dest1 {
+			float : left;
+			padding-top : 5%;
+			padding-left : 10%;
+		}
+		.dest2 {
+			float : right;
+			padding-top : 5%;
+			padding-right : 10%;
+		}
+		#destination img {
+			padding-left:25%;
+		}
+		.detaileddest1 {
+			float : left;
+			padding-left : 10%;
+			padding-top : 5%;
+			font-size : 0.3em;
+		}
+		.detaileddest2 {
+			float : right;
+			padding-right : 10%;
+			padding-top : 5%;
+			font-size : 0.3em;
+		}
+		#dates{
+			margin-top : 10%;
+			font-size : 0.3em;
+		}
+		.datesgroup1{
+			float:left;
+			padding-left:10%;
+		}
+		.datesgroup2{
+			float:right;
+			padding-right:10%;
+		}
+		.datesgroup3{
+			float:left;
+			padding-left:10%;
+			margin-top:5%;
+		}
+		.datesgroup4{
+			float:right;
+			padding-right:10%;
+			margin-top:5%;
+		}
+		#passengers {
+			margin-top:5%;
+		}
+		#infants  {
+			width:15%;
+		}
+		#infantsminus{
+			float:left;
+			padding-right:1%;
+		}
+		#infantsplus{
+			float:right;
+			padding-left:1%;
+		}
+		
+		</style>
+		<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css">
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.mobile-1.4.2.min.js"></script>
+		<script>
+		function showDates(){
+			
+		}
+		function decrementInfantCount(){
+			var num = parseInt($("#infantsnum").text());
+			if(num != 0){
+				num--;
+				$("#infantsnum").text(num);
+			}
+		}
+		function incrementInfantCount(){
+			var num = parseInt($("#infantsnum").text());
+			if(num <= 10){
+				num++;
+				$("#infantsnum").text(num);
+			}
+		}
+		$().ready(function(){
+			$("#dates").on("tap",showDates);
+			$("#infantsminus").on("tap",decrementInfantCount);
+			$("#infantsplus").on("tap",incrementInfantCount);
+		});
+		</script>	
+	</head>
+	<body>
+		<section data-role="page" id="page1">
+			<section data-role="header">
+						
+			</section>	
+			<section data-role="content">
+				<section data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn-active">ONE WAY</a></li>
+						<li><a href="#">ROUND TRIP</a></li>
+					</ul>	
+				</section>
+				<section id="destination" 
+					class="ui-body ui-body-a ui-corner-all">
+					<span class="dest1">
+						---
+					</span>
+					<img src="dummy.jpg" class="dest1">
+					<span class="dest2">
+						---
+					</span>
+					<span class="detaileddest1">
+						SELECT A CITY
+					</span>	
+					<span class="detaileddest2">
+						SELECT A CITY
+					</span>
+				</section>	
+				<section id="dates" class="ui-body ui-body-a ui-corner-all">
+					<span class="datesgroup1">
+						DEPARTURE
+					</span>
+					<span class="datesgroup2">
+						RETURN
+					</span><br/>
+					<section  class="datesgroup3">
+						<img src="date.jpg">
+						<span>
+							SELECT DATE
+						</span>
+					</section>	
+					<span class="datesgroup4">
+						<img src="date.jpg">
+						SELECT DATE
+					</span>
+				</section>
+				<section id="passengers">
+					<section id="infants" class="ui-body ui-body-a ui-corner-all">
+						<span id="infantsminus">-&nbsp;&nbsp;</span>
+						<span id="infantsnum">1</span>
+						<span id="infantsplus">+</span>
+					</section>	
+				</section>	
+			</section>	
+			<section data-role="footer">
+			</section>	
+		</section>
+	</body>		
+</html>
