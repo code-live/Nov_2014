@@ -1,0 +1,21 @@
+Let's implement a jqm application that will use Rotten Tomatoes API.
+Rotten Tomatoes is a movie site that hosts information and reviews about hollywood movies.
+You can search any movie using this URL, where you replace the MOVIENAME with values like say, Titanic, Transformers etc.,
+
+http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=edpyxhran22urr7g7m7pdek8&callback=JSON_CALLBACK&q=MOVIENAME
+
+
+You have to send a JSONP request to this url with callback key as JSON_CALLBACK.
+Study the JSON response.
+
+You need to display the following information.
+
+Total number of search results.
+For every movie you need to display
+
+[Image thumbnail] Name
+				  Year of Release
+				  Star cast
+				  
+				  
+The UI is discussed in the class.				  
