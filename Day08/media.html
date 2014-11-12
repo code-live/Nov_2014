@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<script>
+		function play(){
+			document.getElementById("vid1").play();
+			console.log(document.getElementById("vid1").currentTime);
+		}
+		function pause(){
+			document.getElementById("vid1").pause();
+		}
+		function init(){
+			
+		}
+		</script>
+	</head>
+	<body onload="init();">
+		<audio autoplay src="http://www.w3schools.com/html/horse.mp3" controls></audio>
+		<video id="vid1"   src="http://www.w3schools.com/html/mov_bbb.mp4"
+		height="400" width="400"></video>	<br/>
+		<input type="button" value="Play" onclick="play();">
+		<input type="button" value="Pause" onclick="pause();">
+	
+	</body>		
+</html>
+
+		<!--
+		http://www.w3schools.com/html/mov_bbb.mp4
+		http://www.w3schools.com/html/movie.mp4
+		
+		https://archive.org/details/Windows7WildlifeSampleVideo
+		 -->
