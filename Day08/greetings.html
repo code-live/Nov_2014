@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		function gotoServer(){
+			$.ajax({
+							url : "http://127.0.0.1:8080/Day08/Hi",
+							data : {
+								name : $("#name").val()
+							},
+							dataType : "jsonp",
+							jsonpCallback : "ajsdglksajdfgaklsjdfhg",
+							success : function(response){
+								$("#messageh2").html(response.message);
+							}
+						});
+			
+			
+			/*$.ajax({
+				url : "http://127.0.0.1:8080/Day08/Hello",
+				data : {
+					name : $("#name").val()
+				},
+				dataType : "json",
+				success : function(response){
+					$("#messageh2").html(response.message);
+				}
+			});*/
+		}
+		$().ready(function(){
+			$(":button").on("click",gotoServer);
+		})
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="Name">
+		<input type="button" value="Say hello">
+		<h2 id="messageh2"></h2>
+	</body>
+</html>		

@@ -5,6 +5,15 @@ var server = http.createServer(function(request,response){
 	if(url == "/"){
 		response.end("index.html not fjquery-2.1.1.min.jsound");
 	}
+	else if(url.match(/Hello/) != null){
+		greet(request,response);
+	}
+	else if(url.match(/Hi/) != null){
+		greetJSONP(request,response);
+	}
+	else if(url.match(/Cities/) != null){
+		getCitiesList(request,response);
+	}
 	else if(url.match(/Timer/) != null){
 		response.end(new Date() + "");
 	}
@@ -27,17 +36,50 @@ function sendFile(fileName,response){
 server.listen(8080);
 console.log("Server is running and waiting for requests");
 
+
+function greetJSONP(request,response){
+	var queryString = require("url")
+					.parse(request.url,true)
+					.query;
+	var callback = queryString.callback;
+	if(callback == "ajsdglksajdfgaklsjdfhg"){
+		var name = queryString.name;
+		var obj = { message : "Hello " + name};
+		var output = JSON.stringify(obj);
+		output = callback + "(" + output + ")";
+		response.end(output);	
+	}
+	else
+		response.end("I'm confused");
+}
+
+function greet(request,response){
+	response.setHeader("Access-Control-Allow-Origin",
+	"*");
+	var queryString = require("url")
+					.parse(request.url,true)
+					.query;
+	var name = queryString.name;
+	var output = { message : "Hello " + name};
+	response.end(JSON.stringify(output));
+}
+
+
+function getCitiesList(request,response){
+	var cities = ["Pune","Chennai","London","Cochin","Mumbai","Shimla","Houston","New York"];
+	response.end(JSON.stringify(cities));
+}
 function getInfo(request,response){
 	var queryString = require("url")
 					.parse(request.url,true)
 					.query;
 	var country = queryString.country;
-	var output = "Not available in DB";
+	var output = {capital:"Not available in DB"};
 	if(country == "India")
-		output = "New Delhi";
+		output = {capital:"New Delhi"};
 	else if(country == "USA")
-		output = "Washington DC";
+		output = {capital:"Washington DC"};
 	else if(country == "UK")
-		output = "London";
-	response.end(output);	
+		output = {capital:"London"};
+	response.end(JSON.stringify(output));	
 }
