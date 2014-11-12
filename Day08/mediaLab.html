@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script>
+		function updateTime(){
+			var currentTime = document.getElementById("vid1").currentTime;
+			if(sessionStorage){
+				sessionStorage.setItem("lastplayedtime",currentTime);
+			}
+		}
+		function videoLoaded(){
+			if(sessionStorage){
+				var lastPlayedItem = sessionStorage.getItem("lastplayedtime");
+				if(lastPlayedItem){
+					document.getElementById("vid1").currentTime = lastPlayedItem;
+					document.getElementById("vid1").play();
+				}
+			}
+		}
+		function init(){
+			document.getElementById("vid1").onloadeddata = videoLoaded;
+			document.getElementById("vid1").ontimeupdate = updateTime;
+		}
+		</script>
+	</head>	
+	<body onload="init();">
+		<video id="vid1" controls src="http://www.w3schools.com/html/mov_bbb.mp4" height="400" width="500">
+	</body>	
+</html>
