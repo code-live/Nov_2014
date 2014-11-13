@@ -1,23 +1,25 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css">
+		<link rel="stylesheet" href="themes/rottenthemes.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
 		<link rel="stylesheet" href="Lab.css">
 		<script src="jquery-2.1.1.min.js"></script>
 		<script src="jquery.mobile-1.4.2.min.js"></script>
 		<script src="Lab.js"></script>
 	</head>
 	<body>
-		<section data-role="page" id="searchpage">
-			<section data-role="header">
-				<input type="search" id="search" placeholder="movie name">
+		<section data-role="page" id="searchpage" data-theme="a">
+			<section data-role="header" data-theme="a">
+				<h4 data-theme="b">Movies</h4>
+				<input data-theme="a" type="search" id="search" placeholder="movie name">
 			</section>
-			<section data-role="content">
+			<section data-role="content"  data-theme="a">
 				<header id="searchcount"></header><br/>
-				<ul id="movieslist" data-inset="true" data-role="listview">
+				<ul id="movieslist" data-inset="true" data-role="listview" data-theme="a">
 				</ul>	
 			</section>		
 		</section>	
-		<section data-role="page" id="videopage">
+		<section data-role="page" id="videopage" data-theme="b">
 			<section data-role="header">
 				<h4>Watch</h4>
 				<a href="#searchpage">Home</a>
