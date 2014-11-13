@@ -1,6 +1,12 @@
 .movie {
-	position:relative;
-	left : -10;
-	top : -10;
-	font-size: 0.5em;
+	font-size: 0.7em;
+	margin-top:-1.6em;
+	margin-left:-1.5em;
+	white-space: pre-wrap;
+}
+img {
+	margin-top:2%;
+	margin-left:2%;
+	height: 50%;
+	width : 15%;
 }
