@@ -7,7 +7,7 @@
 		<script src="Lab.js"></script>
 	</head>
 	<body>
-		<section data-role="page">
+		<section data-role="page" id="searchpage">
 			<section data-role="header">
 				<input type="search" id="search" placeholder="movie name">
 			</section>
@@ -15,6 +15,21 @@
 				<header id="searchcount"></header><br/>
 				<ul id="movieslist" data-inset="true" data-role="listview">
 				</ul>	
+			</section>		
+		</section>	
+		<section data-role="page" id="videopage">
+			<section data-role="header">
+				<h4>Watch</h4>
+				<a href="#searchpage">Home</a>
+			</section>
+			<section data-role="content">
+				<section class="movieinfo">
+					<span id="moviename"></span>
+					<span id="movieyear"></span>
+					<span id="moviecast"></span>
+				</section>
+				<video id="video" src="" poster="" controls>
+				</video>		
 			</section>		
 		</section>	
 	</body>
