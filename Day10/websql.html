@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Web SQL </title>
+		<script>
+		//txn.executeSql("",[],success,error)
+		var db = openDatabase("Pune",
+				"1.0",
+				"sample websql database",
+				8724659845);
+		db.transaction(createTable);
+		db.transaction(insertPerson);
+		db.transaction(selectPersons);
+		db.transaction(deletePerson);
+
+		function selectPersons(txn){
+			var query = "Select * from persons";
+			txn.executeSql(query,[],
+				function(tx,result){
+					var count = result.rows.length;
+					for(var i=0;i<count;i++){
+						var row = result.rows.item(i);
+						console.log(row); //JSON object
+					}
+				});
+		}
+		function deletePerson(txn){
+			var query = "delete from persons where id=?";
+			txn.executeSql(query,
+				[101],
+				function(tx,result){
+					console.log(result.rowsAffected);
+				});
+		}
+		
+		function insertPerson(txn){
+			var query = "insert into persons values(?,?,?)";
+			txn.executeSql(query,
+				[101,"Sam",23],
+			    function(tx){
+			    	console.log("Inserted successfully");
+			    },
+				function(tx,error){
+					console.log("Error inserting person");
+					console.log(error);
+				});
+		}
+		function createTable(txn){
+			var query = "create table if not exists persons(id unique,name,age);"
+			txn.executeSql(query,
+				[],
+				function(tx){
+					console.log("Persons created");
+				},
+				function(tx,error){
+					console.log("Error creating Persons");
+					console.log(error);
+				})
+		}		
+		</script>
+	</head>	
+</html>
