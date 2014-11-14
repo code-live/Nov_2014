@@ -10,15 +10,23 @@
 		<script src="Lab.js"></script>
 	</head>
 	<body>
-		<section data-role="page" id="contactspage" data-theme="a">
+		<section data-role="page" id="contactspage" data-theme="d">
 			<section data-role="header">
 				<h4>Contacts</h4>
-				<a href="#addcontactspage">Add</a>
+				<a href="#menupanel" data-icon="bars" 				data-shadow="false" 
+				data-iconpos="notext"></a>
 			</section>
 			<section data-role="content">
 				<ul data-role="listview" id="contactslist">
 				</ul>	
-			</section>		
+			</section>
+			<section id="menupanel" data-role="panel" data-display="overlay">
+				<ul data-role="listview">
+					<li><a href="#addcontactspage">Add</a></li>
+					<li>Edit</li>
+					<li>Delete</li>
+				</ul>	
+			</section>			
 		</section>	
 		<section data-role="page" id="addcontactspage" data-theme="b">
 			<section data-role="header">
