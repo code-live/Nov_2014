@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<script>
+		navigator.geolocation.getCurrentPosition(success,error);
+		function success(position){
+			console.log(position);
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			console.log(lat + "," + lng);
+
+			var mapElement = document.getElementById("map");
+			var coords = new google.maps.LatLng(lat,lng);
+			var myOptions = {
+		      zoom: 20, center: coords,
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var googleMap = new google.maps.Map(mapElement,myOptions);
+		    var marker = new google.maps.Marker({
+		        position: coords, 
+		        map: googleMap, 
+		        title:"You're here"
+		    }); 
+			
+		}
+		function error(err){
+			console.log("Error getting coordinates");
+		}
+		</script>
+	</head>	
+	<body>
+		<section id="map" style="width:80%;height:80%">
+		</section>	
+		
+	</body>
+</html>
