@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="themes/rottenthemes.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />	
+			<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+		<link rel="stylesheet" href="Lab.css">
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="jquery.mobile-1.4.2.min.js"></script>
+		<script src="ContactsDB.js"></script>
+		<script src="Lab.js"></script>
+	</head>
+	<body>
+		<section data-role="page" id="contactspage" data-theme="a">
+			<section data-role="header">
+				<h4>Contacts</h4>
+				<a href="#addcontactspage">Add</a>
+			</section>
+			<section data-role="content">
+				<ul data-role="listview" id="contactslist">
+				</ul>	
+			</section>		
+		</section>	
+		<section data-role="page" id="addcontactspage" data-theme="b">
+			<section data-role="header">
+				<h4>New Contact</h4>
+				<a href="#contactspage">Home</a>
+			</section>
+			<section data-role="content">
+				<input type="text" placeholder="Name" id="name">
+				<input type="email" placeholder="Email" id="email">
+				<input type="text" placeholder="Phone Number" id="phonenumber">
+				<input type="button" value="Add" id="addbutton">
+			</section>
+		</section>
+		<section data-role="page" id="displaycontactspage">
+		</section>
+	</body>
+</html>			
+		
