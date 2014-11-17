@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<style>
+		p:first-child {
+			background-color:red;
+		}
+		p:last-child {
+			color:yellow;
+		}
+		tr:nth-child(odd){
+			background-color:blue;
+		}
+		tr:nth-child(even) {
+			background-color:pink;
+		}
+		#pseudobutton:hover{
+			background-color:blue;
+			color:yellow;
+		}
+		#username:focus {
+			background-color:yellow;
+			color:black;
+		}
+		</style>
+	</head>
+	<body>
+		<input type="text" placeholder="username" id="username"><br/>
+		<input type="button"  value="Pseudo" id="pseudobutton">
+		<table>
+			<tr><td>One</td></tr>
+			<tr><td>Two</td></tr>
+			<tr><td>Three</td></tr>
+			<tr><td>Four</td></tr>
+			<tr><td>Five</td></tr>
+		</table>	
+		<p>This is para1</p>
+		<p>This is para2</p>
+		<p>This is para3</p>
+	</body>		
+</html>
