@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script>
+			var actors = ["Rajni","Kamal","SRK","Salman","Tom Cruise"];
+			//Refer to underscore js documentation and implement the following
+			$().ready(function(){
+				// display each actor in a list. Use (_.each)
+				_.each(actors,function(actor){
+					$("#list").append("<li>"+actor+"</li>");
+				});
+
+				// Print the names of actors starting with S. Use (_.filter)
+				var sactors = _.filter(actors,function(actor){
+					return actor.substr(0,1) == "S";
+				});
+				console.log(sactors);
+				
+				// Print the names concatentated using hyphen. Use (_.reduce)
+				var result = _.reduce(actors,function(initial,actor){
+					return initial + "_" + actor;
+				});
+				console.log(result);
+				
+ 				// Convert the array into an array of JSON objects [{name:"Rajni"},...]. Use (_.map)	
+				var actorObjects = _.map(actors,function(actor){
+					return {name:actor};
+				});
+				console.log(actorObjects);
+			});
+			
+		</script>
+	</head>	
+	<body>
+		<ul id="list"></ul>
+	</body>	
+</html>
