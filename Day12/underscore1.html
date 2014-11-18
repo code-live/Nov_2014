@@ -4,11 +4,15 @@
 		<script src="underscore-min.js"></script>
 		<script>
 			var actors = ["Rajni","Kamal","SRK","Salman","Tom Cruise"];
+			var actorTemplate = "<li> <%=actor%> </li>";
+			
 			//Refer to underscore js documentation and implement the following
 			$().ready(function(){
 				// display each actor in a list. Use (_.each)
 				_.each(actors,function(actor){
-					$("#list").append("<li>"+actor+"</li>");
+					var compiled = _.template(actorTemplate);
+					var output = compiled({actor:actor});
+					$("#list").append(output);
 				});
 
 				// Print the names of actors starting with S. Use (_.filter)

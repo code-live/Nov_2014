@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script type="x/underscore-template" src="externaltemplate.html" id="externaltemplate"></script>
+		<script type="x/underscore-template" id="persontemplate">
+			<h1>
+				Hello <%=name%>
+			</h1>
+		    <p>
+				Hi <%=fullname%>
+			</p>
+		</script>
+		<script>
+		var messageTemplate = $("#persontemplate").html();
+		//var messageTemplate = "<h1>Hello <%=name%></h1><p>Hi <%=fullname%></p>";
+		function display(){
+			var compiled = _.template(messageTemplate);
+			var obj = {
+						name : $("input:text").val(),
+					    fullname : $("input:text").val() + " John"
+					};
+			$("section").html(compiled(obj));
+			var externalTemplate = $("#externaltemplate").html();
+			console.log(externalTemplate);
+			var compiled2 = _.template(externalTemplate)	
+			var output = compiled2({topic:"Underscore JS"});		
+			console.log(output);
+		}
+		$().ready(function(){
+			$("input:text").on("keyup",display);
+		});
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="name">
+		<section>
+		</section>	
+	</body>
+</html>			
