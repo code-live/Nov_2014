@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<style>
+		@media screen and (min-width:700px){
+			nav ul li {
+				display:inline;
+				padding : 12%;
+			}
+			nav ul {
+				display : block;
+			}
+			nav select {
+				display : none;
+			}
+
+			section#contents{
+				padding-left:15%;
+				padding-top:10%;
+			}
+			section#contents section{
+				float:left;
+				width:20%;
+				height:20%;
+				max-width:25%;
+				max-height:25%;
+				margin-left:5%;
+			}
+		}
+		@media screen and (max-width:699px){
+			nav ul {
+				display:none;
+			}
+			nav select {
+				display:block;
+			}
+			section#contents{
+				padding-left:30%;
+				padding-top:10%;
+			}
+			section#contents section{
+				width:45%;
+				height:25%;
+				max-width:50%;
+				max-height:25%;
+				margin-top:5%;
+			}
+		}
+		section#contents section{
+			border-width:0.1em;
+			border-style:solid;
+			border-color:black;
+		}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<center>
+				<select>
+					<option>Home</option>
+					<option>Settings</option>
+					<option>Contact Us</option>
+				</select>
+			</center>	
+			<ul>
+				<li>Home</li>
+				<li>Settings</li>
+				<li>Contact Us</li>
+			</ul>
+		</nav>
+		<hr/>
+		<section id="contents">
+			<section style="background-color:#cfc;">
+				Videos
+			</section>
+			<section style="background-color:#ccf;">
+				Blog
+			</section>
+			<section style="background-color:#cfe;">
+				Wiki
+			</section>	
+		</section>	
+	</body>		
+</html>
