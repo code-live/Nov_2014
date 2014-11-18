@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<style>
+		#contents section {
+			border-width:0.2em;
+			border-style:solid;
+			min-width : 20%;
+			max-width : 20%;
+			min-height : 20%;
+			max-height : 50%;
+			margin : 10%;
+			-webkit-box-shadow: 0.5em 0.5em 0.5em black;
+		}
+		</style>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+
+		<script type="x/underscore-template" id="boxtemplate">
+			<style>
+				#<%=id%> {
+					font-size : <%=fontsize%>;
+				}
+				#<%=id%> div {
+					font-size : 0.5em;
+					border-bottom-width : 0.1em;
+					background-color : <%=bgcolor%>;
+					border-bottom-style:solid;
+				}
+			</style>
+			<section id="<%=id%>">
+				<div><%=title%></div>
+				<%=description%>
+			</section>
+		</script>
+				
+		<script>
+				var compiled = _.template($("#boxtemplate").html());
+				var globalId = 1;	
+				function addBox(){
+					var data = {
+						id : "sec" + globalId,
+						title : $("#title").val(),
+						description : $("#description").val(),
+						bgcolor : $("#bgcolor").val(),
+						fontsize : $("#fontsize").val()
+					};
+					var box = compiled(data);
+					$("#contents").append(box);
+					globalId++;
+				}
+				$().ready(function(){
+					$(":button").on("click",addBox);
+				});
+		</script>				
+	</head>
+	<body>
+		<input type="text" placeholder="title" id="title"><br/>
+		<input type="text" placeholder="description" id="description"><br/>
+		<input type="text" placeholder="bg color" id="bgcolor"><br/>	
+		<input type="text" placeholder="font size" id="fontsize"><br/>			
+		<input type="button" value="Add"><hr/>
+		<section id="contents">
+		</section>	
+	</body>
+</html>			
