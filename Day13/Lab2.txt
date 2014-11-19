@@ -1,0 +1,22 @@
+Implement the following Java code in Sencha Touch.
+--------------------------------------------------
+
+public class Account{
+	private double balance;
+	public Account(double initialBalance){
+		balance = initialBalance;
+	}
+	public void deposit(double amount){
+		balance += amount;
+	}
+	public void withdraw(double amount){
+		balance -= amount;
+	}
+	public double getBalance(){
+		return balance;
+	}
+}
+Account account1 = new Account(10000);
+account1.deposit(400);
+account1.withdraw(300);
+System.out.println("Balance: " + account1.getBalance());

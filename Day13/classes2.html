@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		
+		Ext.define("Person",{
+			config : {
+				name : "",
+				age : -1,
+				address : ""
+			},
+			eat : function(){
+				console.log(this.getName() + " is eating");
+			},
+			constructor : function(data){
+				this.initConfig(data);
+			}
+		});
+		var p1 = Ext.create("Person",{
+			name : "Sam", age: 37
+		});
+		p1.eat();
+		console.log(p1.getName());
+		p1.setAddress("Pune");
+		console.log(p1.getAddress());
+		
+		var p2 = Ext.create("Person",{
+			name : "Ram", address : "Pune"
+		});
+		console.log(p2.getName());
+		</script>
+	</head>
+	<body>
+	</body>
+</html>			
