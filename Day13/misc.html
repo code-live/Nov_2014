@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		
+		Ext.define("Company",{
+			singleton : true,
+			operate : function(){
+				console.log("Operating from Pune");
+			}
+		});
+		Company.operate();
+		//var c1 = Ext.create("Company");
+		//c1.operate();
+		
+		//Ext.Component is the base class for all UI components
+		
+		Ext.define("Person",{
+			statics : {
+				numberOfPersons : 0,
+				doSomething : function(){
+					console.log("Getting tortured");
+				}
+			},
+			constructor : function(){
+				console.log("Person created");
+				this.statics().numberOfPersons++;
+			}
+		});
+		var p1 = Ext.create("Person",{});
+		var p2 = Ext.create("Person",{});
+		console.log(Person.numberOfPersons);
+		Person.doSomething();
+		</script>
+	</head>
+</html>		
