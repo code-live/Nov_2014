@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		//Ext.field.Text
+		Ext.define("Person",{});
+		var p1 = Ext.create("Person",{});
+		var p2 = Ext.create("Person",{});
+		
+		//package Pune.kothrud.vinsys;
+		//class Car {}
+		
+		Ext.define("Pune.kothrud.vinsys.Car",{
+			drive : function(model){
+				console.log("Driving " + model);
+			}
+		});
+		Ext.define("MyTextBox",{
+			getValue : function(){
+				return "Dummy";
+			},
+			setValue : function(value){
+				
+			},
+			setStyle : function(obj){
+				
+			}
+		});
+		var t1 = Ext.create("MyTextBox",{});
+		console.log(t1.getValue());
+		
+		var c1 = Ext.create("Pune.kothrud.vinsys.Car",{});
+		c1.drive("City");
+		
+		var c2 = Ext.create("Pune.kothrud.vinsys.Car",{});
+		c1.drive("Santro");
+		
+		
+		</script>
+	</head>
+</html>		
