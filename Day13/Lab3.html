@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Game",{
+			config : {
+				target : -1,
+				attempts : 0,
+				message : "",
+				over : false
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);
+			},
+			play : function(guess){
+				this.setAttempts(this.getAttempts()+1);
+				if(guess > this.getTarget())
+					this.setMessage("Aim Lower");
+				else if(guess < this.getTarget())
+					this.setMessage("Aim Higher");
+				else{
+					this.setMessage("You've got it");
+					this.setOver(true);
+				}
+			}
+		});
+		function startNewGame(){
+			game = Ext.create("Game",{
+				target : Math.round(Math.random()*100)
+			});
+			Ext.getCmp("guess").setValue("0");
+			Ext.getCmp("messagelabel").setHtml("");
+			Ext.getCmp("attemptslabel").setHtml("");
+		}
+		function stopGame(){
+			Ext.getCmp("guess").disable();
+			Ext.getCmp("playbutton").disable();
+		}
+		function displayPlayAgainPanel(){
+			if(playAgainPanel == undefined){
+				playAgainPanel = Ext.create("Ext.Panel",{
+					width : "25%",
+					items : [
+						{
+							xtype : "titlebar",
+							title : "Want to play again?",
+							height : "10%"
+						},
+						{
+							xtype : "button", text : "Yes",
+							id : "yesbutton",
+							listeners : {
+								tap : function(){
+									playAgainPanel.hide();
+									startNewGame();
+								}
+							}
+						},
+						{
+							xtype : "button", text : "No",
+							id : "nobutton",
+							listeners : {
+								tap : function(){
+									playAgainPanel.hide();
+									stopGame();
+								}
+							}
+						}
+					]
+				});
+			}
+			playAgainPanel.showBy(Ext.getCmp("playbutton"));
+		}
+		function playButtonTapped(){
+			var guess = Ext.getCmp("guess").getValue();
+			game.play(guess);
+			Ext.getCmp("messagelabel").setHtml(game.getMessage());
+			Ext.getCmp("attemptslabel").setHtml(" Attempts: " + game.getAttempts());
+			if(game.getOver()){
+				displayPlayAgainPanel();
+			}
+		}
+		var playAgainPanel;
+		var game = Ext.create("Game",{
+			target : Math.round(Math.random()*100)
+		});
+		console.log(game.getTarget());
+		
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					
+					items : [
+						{ xtype: "titlebar", title:"Guessing game",height:"5%"},
+						{
+							xtype : "textfield",
+							placeHolder : "Enter your guess",
+							id : "guess"
+						},
+						{
+							xtype : "button",
+							text : "Play",
+							id : "playbutton",
+							listeners : {
+								tap : playButtonTapped
+							}
+						},
+						{
+							xtype : "label",
+							id : "messagelabel"
+						},
+						{
+							xtype : "label",
+							id : "attemptslabel"
+						}
+					]
+				});
+				
+			}
+		});
+		</script>
+	</head>
+</html>		
