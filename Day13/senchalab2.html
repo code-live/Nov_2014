@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("Account",{
+			config : {
+				balance : -1
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);
+			},
+			deposit : function(amount){
+				this.setBalance(this.getBalance() + amount);
+			},
+			withdraw : function(amount){
+				this.setBalance(this.getBalance() - amount);
+			}
+		});
+		var account1 = Ext.create("Account",{ balance : 10000 });
+		account1.deposit(400);
+		account1.withdraw(200);
+		console.log("Balance: " + account1.getBalance());
+		</script>
+	</head>
+</html>		
