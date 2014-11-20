@@ -1,0 +1,22 @@
+create the following before you proceed reading.
+stocks.html,stocks.js
+******
+1) You have a collection of stock symbols.
+"MS", "GOOG", "INTC", "AAPL", "GM", "FB", "INFY", "HP"
+
+2)You will send AJAX requests to the following url by passing each and every symbol.
+
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22SYMBOL%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json
+
+If you replace the SYMBOL with INFY or FB you will get a JSON output. Study the JSON output.
+Look for
+
+query.results.quote.LastTradePriceOnly (this will give the stock price)
+query.results.quote.Change  (this will give the change w.r.t the previous value)
+
+Display these values in the list. Use methods like add() in the Store class. You may not be able to use the proxy in the store.
+
+If the Change is positive display the value in GREEN color and if the Change is negative display the value in RED color. Refer to Ext.XTemplate class in the documentation.
+
+Have a button in the titlebar of the page called "Refresh". Clicking "Refresh" will refresh the new values.
