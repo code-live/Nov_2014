@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<style>
+		.positive {
+			color : green;
+		}
+		.negative {
+			color : red;
+		}
+		</style>
+		<script src="touch/sencha-touch-all.js"></script>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script>
+		Ext.define("StockApplication",{
+			singleton : true,
+			config : {
+				symbols : ["MS", "GOOG", "INTC", "AAPL", "GM", "FB", "INFY", "HP"],
+				baseUrl : "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22SYMBOL%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json"
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);
+			}
+		});
+		
+			Ext.define("Symbol",{
+				extend : "Ext.data.Model",
+				config : {
+					fields : ["name","price","change","color"]
+				}
+			})
+			Ext.define("SymbolStore",{
+				extend : "Ext.data.Store",
+				config : {
+					model : "Symbol",
+					sorters : [
+						{
+						     property : 'name',
+						     direction: 'ASC'
+						}
+					]
+				}
+			})
+			var symbolStore = Ext.create("SymbolStore");
+			function sendAjaxRequests(){
+				console.log(StockApplication);
+				Ext.Array.each(StockApplication.getSymbols(),function(symbol){
+					var url = StockApplication.getBaseUrl().replace("SYMBOL",symbol);
+					connectToYahoo(symbol,url);
+				});
+			}
+			
+			function connectToYahoo(symbol,url){
+				Ext.Ajax.request({
+					url : url,
+					method : "GET",
+					useDefaultXhrHeader : false,
+					success : function(xhr){
+						var response = xhr.responseText;
+						var result = Ext.JSON.decode(response);
+						var record = symbolStore.findRecord("name",symbol);
+						var price = 	result.query.results.quote.LastTradePriceOnly;
+						var change = result.query.results.quote.Change;
+						var color = result.query.results.quote.Change > 0? "positive":"negative";
+						if(record == null){
+							var data = {
+								name : symbol,
+								price : price, 								change :change, 								color : color
+							};
+							symbolStore.add(data);
+						}
+						else{
+							console.log("refresh");
+							record.set("price",price);
+							record.set("change",change);
+							record.set("color",color);
+						}
+					}
+				});
+			}
+			function refreshButtonTapped(){
+				sendAjaxRequests();
+			}
+			Ext.application({
+				launch : function(){
+					sendAjaxRequests();	
+					Ext.create("Ext.Panel",{
+						fullscreen : true,
+						items : [
+							{
+								xtype : "titlebar",
+								title : "Stocks",
+								height : "5%",
+								items : [
+									{
+										xtype : "button",
+										text : "Refresh",
+										listeners : {
+											tap : refreshButtonTapped
+										}
+									}
+								]
+							},
+							{
+								xtype : "list",
+								store : symbolStore,
+								itemTpl : "{name}  <span class='{color}'>{price}</span>"
+							}	
+						]
+					});
+				}
+			});
+		</script>
+	</head>
+</html>		
