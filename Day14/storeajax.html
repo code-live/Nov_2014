@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<script src="touch/sencha-touch-all.js"></script>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script>
+		Ext.define("Cricketer",{
+			extend : "Ext.data.Model",
+			config : {
+				fields : ["name","age","country"]
+			},
+			updateAge : function(){
+				//logic
+				this.set("age",this.get("age")+1);
+			},
+			validateCountry : function(){
+				//...
+			}
+		});
+		Ext.define("CricketerStore",{
+			extend : "Ext.data.Store",
+			config : {
+				autoLoad : false,
+				model : "Cricketer",
+				proxy : {
+					type : "ajax",
+					url : "Cricketers",
+					reader : {
+						type : "json",
+						rootProperty : "cricketerslist"
+					}
+				}
+			}
+		});
+		var cricketerStore = Ext.create("CricketerStore",{});
+		
+		Ext.application({
+			launch : function(){
+
+				Ext.create("Ext.dataview.List",{
+					fullscreen : true,
+					store : cricketerStore,
+					itemTpl : "<b>{name}</b>, {age}  <i>{country}</i>",
+					listeners : {
+						itemdoubletap : function(src,index){
+							index++;
+							if(index == cricketerStore.getCount())
+								index = 0;
+									
+							var nextRecord = cricketerStore.getAt(index);
+							nextRecord.updateAge();
+							console.log(nextRecord.get("name") + ", " + nextRecord.get("age") + ", " + nextRecord.get("country")); 
+						}
+					}
+				});
+				setTimeout(function(){
+					cricketerStore.load();
+				},5000);
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</script>
+	</head>
+</html>		
