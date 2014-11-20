@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<script src="touch/sencha-touch-all.js"></script>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script>
+		Ext.define("Cricketer",{
+			extend : "Ext.data.Model",
+			config : {
+				fields : ["name","age","country"]
+			},
+			updateAge : function(){
+				//logic
+				this.set("age",this.get("age")+1);
+			},
+			validateCountry : function(){
+				//...
+			}
+		});
+		Ext.define("CricketerStore",{
+			extend : "Ext.data.Store",
+			config : {
+				model : "Cricketer",
+				//fields : ["name","age","country"],
+				data : [
+					{name:"Virat",age:26,country:"India"},
+					{name:"Shikar Dawan",age:28,country:"India"},
+					{name:"Rohit Sharma",age:28,country:"India"},
+					{name:"De Villiers",age:34,country:"SA"},
+					{name:"George Bailey",age:28,country:"Australia"}
+				]
+			}
+		});
+		var cricketerStore = Ext.create("CricketerStore",{});
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.dataview.List",{
+					fullscreen : true,
+					store : cricketerStore,
+					itemTpl : "<b>{name}</b>, {age}  <i>{country}</i>",
+					listeners : {
+						itemdoubletap : function(src,index){
+							index++;
+							if(index == cricketerStore.getCount())
+								index = 0;
+									
+							var nextRecord = cricketerStore.getAt(index);
+							nextRecord.updateAge();
+							console.log(nextRecord.get("name") + ", " + nextRecord.get("age") + ", " + nextRecord.get("country")); 
+						}
+					}
+				});
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</script>
+	</head>
+</html>		
