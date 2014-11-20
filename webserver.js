@@ -3,7 +3,10 @@ var fs = require("fs");
 var server = http.createServer(function(request,response){
 	var url = request.url;
 	if(url == "/"){
-		response.end("index.html not fjquery-2.1.1.min.jsound");
+		response.end("index.html not found");
+	}
+	else if(url.match(/Cricketers/) != null){
+		getCricketers(request,response);
 	}
 	else if(url.match(/Hello/) != null){
 		greet(request,response);
@@ -36,7 +39,18 @@ function sendFile(fileName,response){
 server.listen(8080);
 console.log("Server is running and waiting for requests");
 
-
+function getCricketers(request,response){
+	var data = {
+		cricketerslist : [
+			{name:"Virat",age:26,country:"India"},
+			{name:"Shikar Dawan",age:28,country:"India"},
+			{name:"Rohit Sharma",age:28,country:"India"},
+			{name:"De Villiers",age:34,country:"SA"},
+			{name:"George Bailey",age:28,country:"Australia"}
+		]
+	};
+	response.end(JSON.stringify(data));
+}
 function greetJSONP(request,response){
 	var queryString = require("url")
 					.parse(request.url,true)
