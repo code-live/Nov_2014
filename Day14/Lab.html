@@ -48,7 +48,25 @@
 					connectToYahoo(symbol,url);
 				});
 			}
-			
+			function addToStore(symbol,result){
+				var record = symbolStore.findRecord("name",symbol);
+				var price = 	result.query.results.quote.LastTradePriceOnly;
+				var change = result.query.results.quote.Change;
+				var color = result.query.results.quote.Change > 0? "positive":"negative";
+				if(record == null){
+					var data = {
+						name : symbol,
+						price : price, 								change :change, 								color : color
+					};
+					symbolStore.add(data);
+				}
+				else{
+					console.log("refresh");
+					record.set("price",price);
+					record.set("change",change);
+					record.set("color",color);
+				}
+			}
 			function connectToYahoo(symbol,url){
 				Ext.Ajax.request({
 					url : url,
@@ -57,24 +75,8 @@
 					success : function(xhr){
 						var response = xhr.responseText;
 						var result = Ext.JSON.decode(response);
-						var record = symbolStore.findRecord("name",symbol);
-						var price = 	result.query.results.quote.LastTradePriceOnly;
-						var change = result.query.results.quote.Change;
-						var color = result.query.results.quote.Change > 0? "positive":"negative";
-						if(record == null){
-							var data = {
-								name : symbol,
-								price : price, 								change :change, 								color : color
-							};
-							symbolStore.add(data);
-						}
-						else{
-							console.log("refresh");
-							record.set("price",price);
-							record.set("change",change);
-							record.set("color",color);
-						}
-					}
+						addToStore(symbol,result);
+					}		
 				});
 			}
 			function refreshButtonTapped(){
