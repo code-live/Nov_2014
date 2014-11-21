@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					fullscreen : true,
+					layout : {
+						type : "hbox",//"vbox",
+						align : "center",
+						pack : "center"
+					},
+					defaults : {
+						xtype : "button", 
+						//height : "10%",
+						//width : "20%",
+						margin : "5%"
+					},
+					items : [
+						{ xtype:"titlebar",title:"Layout",height:"5%",docked:"top",margin:"0%"},
+						{ text : "A" },
+						{ text : "B" },
+						{ text : "C" },
+						{ text : "D" }
+					]	
+				});
+			}
+		});
+		</script>	
+	</head>
+</html>		
