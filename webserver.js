@@ -15,7 +15,8 @@ var server = http.createServer(function(request,response){
 		greetJSONP(request,response);
 	}
 	else if(url.match(/Cities/) != null){
-		getCitiesList(request,response);
+		getCitiesListInJSON(request,response);
+		//getCitiesList(request,response);
 	}
 	else if(url.match(/Timer/) != null){
 		response.end(new Date() + "");
@@ -78,6 +79,15 @@ function greet(request,response){
 	response.end(JSON.stringify(output));
 }
 
+function getCitiesListInJSON(request,response){
+	var data = {
+		cities : [
+		 {name:"Chennai"},{name:"Pune"},{name:"Houston"},
+		 {name:"Cochin"},{name:"Bangalore"},{name:"Mumbai"}
+	   ]
+	};
+	response.end(JSON.stringify(data));
+}
 
 function getCitiesList(request,response){
 	var cities = ["Pune","Chennai","London","Cochin","Mumbai","Shimla","Houston","New York"];
