@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="touch/resources/css/sencha-touch.css">
+		<script src="touch/sencha-touch-all.js"></script>
+		<script>
+		Ext.define("CitiesStore",{
+			extend : "Ext.data.Store",
+			config : {
+				autoLoad : true,
+				fields : ["name"],
+				proxy : {
+					type : "ajax",
+					url : "Cities",
+					reader : {
+						type : "json",
+						rootProperty : "cities"
+					}
+				}
+			}
+		});
+		
+		Ext.define("Global",{
+			singleton : true,
+			config : {
+				citiesStore : Ext.create("CitiesStore")
+			},
+			getTemperature : function(city,callback){
+				Ext.Ajax.request({
+					url : "http://api.openweathermap.org/data/2.5/weather",
+					method : "GET",
+					useDefaultXhrHeader : false,
+					params : {
+						q : city,
+						units : "metric"
+					},
+					success : function(xhr){
+						var response = xhr.responseText;
+						var result = Ext.JSON.decode(response);
+						var min = result.main.temp_min;
+						var max = result.main.temp_max;
+						var humidity = result.main.humidity;
+						callback(min,max,humidity);
+					}
+					
+				});
+			},
+			constructor : function(cfg){
+				this.initConfig(cfg);	
+			}
+		});
+		Ext.define("CitiesDetailScreen",{
+			extend : "Ext.Panel",
+			alias : "widget.citiesdetails",
+			config : {
+				items : [
+					{
+						xtype : "titlebar",
+						id : "cityheader",
+						title : "",
+						height : "5%",
+						items : [
+							{
+								xtype : "button",
+								text : "Back",
+								listeners : {
+									tap : function(){
+										Ext.getCmp("rootpanel").setActiveItem(0);
+									}
+								}
+							}
+						]
+					},
+					{
+						xtype : "label",
+						id : "minlabel"
+					},
+					{
+						xtype : "label",
+						id : "maxlabel"
+					},
+					{
+						xtype : "label",
+						id : "humiditylabel"
+					}
+				]
+			}
+		});
+		Ext.define("CitiesListScreen",{
+			extend : "Ext.Panel",
+			alias : "widget.citieslist",
+			config : {
+				
+				items : [
+					{
+						xtype : "titlebar",
+						title : "Cities",
+						height : "5%"
+					},
+					{
+						xtype : "list",
+						store : Global.getCitiesStore(),
+						itemTpl : "{name}",
+						listeners : {
+							itemtap : function(a,b,c,record){
+								
+								var city = record.get("name");
+								Global.getTemperature(city,function(min,max,humidity){
+									Ext.getCmp("rootpanel").setActiveItem(1);
+									Ext.getCmp("cityheader").setTitle(city);
+									Ext.getCmp("minlabel").setHtml("Min: " + min);
+									Ext.getCmp("maxlabel").setHtml("Max: " + max);
+									Ext.getCmp("humiditylabel").setHtml("Humidity: " + humidity);
+									
+								})
+								
+							}
+						}
+					}
+				]
+			}
+		});
+		
+		
+		
+		Ext.application({
+			launch : function(){
+				Ext.create("Ext.Panel",{
+					id : "rootpanel",
+					layout : "card",
+					fullscreen : true,
+					items : [
+						{ xtype : "citieslist" },
+						{ xtype : "citiesdetails"}
+					]
+				});
+			}
+		});
+		
+		</script>
+	</head>	
+</html>	
