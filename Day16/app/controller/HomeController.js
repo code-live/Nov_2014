@@ -23,7 +23,21 @@ Ext.define("Monday.controller.HomeController",{
 		this.connectToWeatherMap(weatherPageReference,city);
 	},
 	connectToWeatherMap : function(weatherPageReference,city){
-		Ext.Ajax.request({
+		
+		Monday.model.TemperatureReport.getProxy().setExtraParams({
+			units : "metric",
+			q : city
+		});
+		Monday.model.TemperatureReport.load(city,{
+			success : function(record){
+				record.set("city",city);
+				weatherPageReference.update(record);
+				Ext.Viewport.setActiveItem(2);
+			}
+			
+		});
+		
+		/*Ext.Ajax.request({
 			url : "http://api.openweathermap.org/data/2.5/weather",
 			params : {
 				q : city,
@@ -47,6 +61,6 @@ Ext.define("Monday.controller.HomeController",{
 				weatherPageReference.update(tempReport);
 				Ext.Viewport.setActiveItem(2);
 			}
-		});
+		});*/
 	}
 });
