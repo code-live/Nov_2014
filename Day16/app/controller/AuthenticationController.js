@@ -9,8 +9,16 @@ Ext.define("Monday.controller.AuthenticationController",{
 		control : {
 			"#submitbutton" : {
 				tap : "loginButtonTapped"
+			},
+			"#dummybutton" : {
+				tap : "dummyButtonTapped"
 			}
 		}
+	},
+	dummyButtonTapped : function(){
+		//this.getLoginPage()
+		Ext.getCmp("loginpage").
+			doSomethingSilly("Stupid","Silly");
 	},
 	loginButtonTapped : function(){
 		if(this.getUserName().getValue() == 

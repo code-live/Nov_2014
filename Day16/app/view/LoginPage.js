@@ -24,9 +24,18 @@ Ext.define("Monday.view.LoginPage",{
 				id : "submitbutton"
 			},
 			{
+				xtype : "button",
+				text : "Dummy",
+				id : "dummybutton"
+			},
+			{
 				xtype : "label",
 				id : "messagelabel"
 			}
 		]
+	},
+	doSomethingSilly : function(a,b){
+		this.getComponent("usernametext").setValue(a);
+		this.getComponent("passwordtext").setValue(b);
 	}
 });
