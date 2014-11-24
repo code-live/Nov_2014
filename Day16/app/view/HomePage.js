@@ -7,6 +7,11 @@ Ext.define("Monday.view.HomePage",{
 				xtype : "titlebar",
 				title : "Welcome",
 				height : "5%"
+			},
+			{
+				xtype : "list",
+				store : "CityStore",
+				itemTpl : "{name}"
 			}
 		]
 	}

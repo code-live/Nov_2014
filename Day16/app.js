@@ -3,8 +3,8 @@ Ext.application({
 	name : "Monday",
 	appFolder : "app",
 	controllers : ["AuthenticationController"],
-	models : [],
-	stores : [],
+	models : ["City"],
+	stores : ["CityStore"],
 	views : ["LoginPage","HomePage"],
 	launch : function(){
 		//Viewport is a Panel with card layout and fullscreen true
