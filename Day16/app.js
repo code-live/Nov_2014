@@ -2,10 +2,10 @@ Ext.Loader.setConfig({disableCaching:false});
 Ext.application({
 	name : "Monday",
 	appFolder : "app",
-	controllers : ["AuthenticationController"],
-	models : ["City"],
+	controllers : ["AuthenticationController","HomeController"],
+	models : ["City","TemperatureReport"],
 	stores : ["CityStore"],
-	views : ["LoginPage","HomePage"],
+	views : ["LoginPage","HomePage","WeatherPage"],
 	launch : function(){
 		//Viewport is a Panel with card layout and fullscreen true
 		//It's created during startup by default

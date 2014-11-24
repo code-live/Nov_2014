@@ -10,6 +10,7 @@ Ext.define("Monday.view.HomePage",{
 			},
 			{
 				xtype : "list",
+				id : "citieslist",
 				store : "CityStore",
 				itemTpl : "{name}"
 			}

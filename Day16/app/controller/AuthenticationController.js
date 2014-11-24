@@ -12,8 +12,14 @@ Ext.define("Monday.controller.AuthenticationController",{
 			},
 			"#dummybutton" : {
 				tap : "dummyButtonTapped"
+			},
+			"#backtocitiesbutton" : {
+				tap : "backToCitiesButtonTapped"
 			}
 		}
+	},
+	backToCitiesButtonTapped : function(){
+		Ext.Viewport.setActiveItem(1);
 	},
 	dummyButtonTapped : function(){
 		//this.getLoginPage()
