@@ -11,9 +11,9 @@ var server = http.createServer(function(request,response){
 	else if(url.match(/Hello/) != null){
 		greet(request,response);
 	}
-	else if(url.match(/Hi/) != null){
+/*	else if(url.match(/Hi/) != null){
 		greetJSONP(request,response);
-	}
+	}*/
 	else if(url.match(/Cities/) != null){
 		getCitiesListInJSON(request,response);
 		//getCitiesList(request,response);
@@ -26,6 +26,8 @@ var server = http.createServer(function(request,response){
 	}
 	else{
 		var fileName = url.substring(1);
+		if(fileName.indexOf("?") != -1)
+			fileName = fileName.substring(0,fileName.indexOf("?"));
 		sendFile(fileName,response);
 	}
 });
