@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script>
+		    var accentureDB;
+			function createAccentureDB(){
+				var request = indexedDB.open("Accenture",1.0);
+				request.onsuccess = function(){
+					accentureDB = request.result;
+				}
+				request.onerror = function(e){
+					console.log("ERROR");
+					console.log(e);
+				}
+				request.onupgradeneeded = function(e){
+					accentureDB = e.target.result;
+					accentureDB.createObjectStore("PeopleStore",{keyPath:"name"});
+					console.log("DB created successfully");
+				}
+			}
+			$().ready(function(){
+				createAccentureDB();
+				$("#addbutton").on("click",addPerson);
+				$("#displaybutton").on("click",displayPersons);
+			})
+			function displayPersons(){
+				var txn = accentureDB.transaction("PeopleStore","readonly");
+				var peopleStore = txn.objectStore("PeopleStore");
+				var cursor = peopleStore.openCursor();
+				
+				cursor.onsuccess = function(e){
+					var record = e.target.result;
+					if(record){
+						console.log(record.value["name"] + ", " + record.value["age"]);
+						record.continue();
+					}
+				}
+			}
+			function addPerson(){
+				var person = {
+					name : $("#name").val(),
+					age : $("#age").val()
+				};
+				var txn = accentureDB.transaction("PeopleStore","readwrite");
+				var peopleStore = txn.objectStore("PeopleStore");
+				txn.oncomplete = function(){
+					console.log("Person inserted");
+				};
+				peopleStore.add(person);
+				
+				//Let's add person object to IndexedDB
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="Name"><br/>
+		<input type="text" id="age" placeholder="Age"><br/>
+		<input type="button" value="Add" id="addbutton">
+		<input type="button" value="Display" id="displaybutton">
+		<h1 id="message"></h1>
+	</body>	
+</html>

@@ -1,0 +1,13 @@
+CACHE MANIFEST
+#version 1.6
+#just a comment
+
+CACHE:
+Page1.html
+page1.css
+
+NETWORK:
+page1.js
+
+FALLBACK:
+Page2.html nointernet.html
