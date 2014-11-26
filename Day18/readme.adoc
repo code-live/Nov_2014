@@ -2,9 +2,13 @@
 prabhu@durasoftindia.com
 
 == Step I
---> Create an application in *jQuery Mobile*. Have an 'index.html' file with the js and css files included
-   (or)
---> Create an application in *Sencha Touch*. You can use *Sencha Cmd* for that. Run the following commands after installing Sencha Cmd. Note: Sencha Cmd requires *Ruby* runtime, so you need to install Ruby for Sencha Cmd to work.
+--> Create an application in *jQuery Mobile*. Have an 'index.html' file with the js and css files included +
+   (or) +
+--> Create an application in *Sencha Touch*. You can use *Sencha Cmd* for that. Run the following commands after installing Sencha Cmd. 
+
+****
+Sencha Cmd requires *Ruby* runtime, so you need to install Ruby for Sencha Cmd to work.
+****
 
 *sencha -sdk <path to touch-x.y.z folder> generate app <NameOfTheApplication> <path to the application>*
 
