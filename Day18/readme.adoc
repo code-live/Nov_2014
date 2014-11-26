@@ -1,0 +1,78 @@
+= Generating Native applications
+prabhu@durasoftindia.com
+
+== Step I
+--> Create an application in *jQuery Mobile*. Have an 'index.html' file with the js and css files included
+   (or)
+--> Create an application in *Sencha Touch*. You can use *Sencha Cmd* for that. Run the following commands after installing Sencha Cmd. Note: Sencha Cmd requires *Ruby* runtime, so you need to install Ruby for Sencha Cmd to work.
+
+*sencha -sdk <path to touch-x.y.z folder> generate app <NameOfTheApplication> <path to the application>*
+
+The above command generates a blank sencha touch application with the mvc folders created. Edit the code and run it locally in a web server during development.
+
+*sencha app build production*
+
+This command compresses the whole application, generates one js file(app.js) and gives you the application ready to be deployed.
+
+== Step II
+
+--> After developing the application you can now generate a native application in the following ways.
+
+1) You can upload a zip file on the *PhoneGap cloud*. Go to http://build.phonegap.com and create an account. Upload the zip file of your application. You get the neccessary native files ready to be installed in your devices.
+
+(OR)
+
+2) You can use *Apache cordova* to generate native executables. You need to setup Cordova in your development machine.
+
+*  Install Node JS
+*  Install JDK (for Android)
+*  Install ANT (for Android)
+*  Install Cordova
+
++npm install -g cordova+
+
+* Create a project in cordova
+
++cordova create <ProjectName> <PackageName> <ApplicationName>+
+It will download a 'www' folder.
+
+* Inside the www folder paste your jQM or Sencha Touch application code.
+
+* Add the platform for which you need to generate an executable using the command
+
++cordova platform add <platformname>+  where <platformname> is either *Android* or *ios* or *blackberry*  and so on.
+
+* Build your application to generate the native executables using
+
++cordova build+
+
+* To run in it in an emulator 
+
++cordova emulate <platformname>+ where <platformname> is Android or ios ...etc.
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
