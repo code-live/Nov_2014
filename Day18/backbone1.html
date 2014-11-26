@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script src="backbone-min.js"></script>
+
+		<script>
+		var Section1View = Backbone.View.extend({
+			el : "#section1",
+			events : {
+				"click #clickbutton" : "buttonClicked"
+			},
+			referenceToOtherView : null,
+			/*
+			initialize : function(data){
+				this.referenceToOtherView = data.nextView;
+			},
+			*/
+			buttonClicked : function(){
+				var name = $("#name").val();
+				var message = "Hello " + name;
+				this.trigger("oomaaakantta",message);
+				/*this.referenceToOtherView.displayMessage(message);	*/
+				/*
+				var temp = new Section2View();
+				temp.displayMessage(message);
+				*/
+			}
+		});
+		
+		var Section2View = Backbone.View.extend({
+			el : "#section2",
+			displayMessage : function(msg){
+				$("#message").text(msg);
+			}
+		});
+		
+		$().ready(function(){
+			var s2 = new Section2View();
+			var s1 = new Section1View();
+			s1.bind("oomaaakantta",s2.displayMessage);
+			
+		});
+		</script>
+	</head>
+	<body>
+		<section id="section1">
+			<input type="text" id="name" placeholder="Name"><br/>
+			<input type="button" value="Click" id="clickbutton">
+		</section>
+			
+		<section id="section2">
+			<h1 id="message"></h1>
+		</section>
+	</body>	
+</html>
