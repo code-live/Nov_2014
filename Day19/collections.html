@@ -16,7 +16,13 @@
 			model : Global.Person,
 			url : "/people",
 			initialize : function(){
-				this.fetch();
+/*				this.fetch({
+					method : "GET",
+					data : {
+						num : "1"
+					}
+				});
+*/
 			},
 			parse : function(response){
 				var mainCollection = this;
@@ -35,7 +41,11 @@
 				"click #addbutton" : "addPerson",
 				"click #listallbutton" : "displayPersons",
 			},
+			initialize : function(){
+				this.listenTo(this.collection,"add",this.displayPersons);
+			},
 			displayPersons : function(){
+				$("tbody").html("");
 				var models = this.collection.models;
 				_.each(models,function(model){
 					$("tbody").append("<tr><td>" + model.get("name") + "</td></tr>");
@@ -51,7 +61,15 @@
 		});
 		$().ready(function(){
 			var people = new Global.PeopleCollection();
-			
+			people.fetch({
+					method : "GET",
+					data : {
+						num : "1"
+					},
+					success : function(response){
+						console.log(response);
+					}
+				});
 			var personView = new Global.PeopleView({ collection : people});
 		})
 		</script>
