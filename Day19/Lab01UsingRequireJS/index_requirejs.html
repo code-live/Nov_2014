@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script data-main="app" src="lib/require.js"></script>
+	</head>
+	<body>
+		<section id="loginsection">
+			<fieldset>
+				<legend>Login</legend>
+				<input type="text" placeholder="User Name" id="username" value="admin"><br/>
+				<input type="password" placeholder="Password" id="password" value="admin"><br/>
+				<input type="button" value="Submit" id="loginbutton"><br/>
+				<h2 id="loginerror">Invalid credentials</h2>				
+			</fieldset>	
+		</section>	
+		<section id="gamesection">
+			<h1>Welcome to the Guessing Game</h1>
+			<input type="button" value="Logout" id="logoutbutton" style="float:right;position:relative;top:-4em">
+			<hr/>
+			<input type="text" id="guess" placeholder="Enter your guess">
+			<input type="button" value="Play" id="playbutton">
+			<h4 id="gamemessage"></h4>
+			<h4 id="gameattempts"></h4>
+		</section>	
+	</body>
+</html		
