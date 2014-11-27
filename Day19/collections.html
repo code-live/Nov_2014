@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script src="backbone-min.js"></script>
+		<script>
+		var Global = {};
+		
+		Global.Person = Backbone.Model.extend({
+			defaults : {
+				name : ""
+			}
+		});
+		
+		Global.PeopleCollection = Backbone.Collection.extend({
+			model : Global.Person,
+			url : "/people",
+			initialize : function(){
+				this.fetch();
+			},
+			parse : function(response){
+				var mainCollection = this;
+				var people = response.people;
+				_.each(people,function(person){
+					var obj = new Global.Person();
+					obj.set("name",person.name);
+					console.log(obj);
+					mainCollection.add(obj);
+				});
+				this.models = mainCollection.models;
+				console.log(this);
+			}
+		});
+		
+		Global.PeopleView = Backbone.View.extend({
+			el : "body",
+			events : {
+				"click #addbutton" : "addPerson",
+				"click #listallbutton" : "displayPersons",
+			},
+			displayPersons : function(){
+				var models = this.collection.models;
+				console.log(this.collection);
+				_.each(models,function(model){
+					$("tbody").append("<tr><td>" + model.get("name") + "</td></tr>");
+				});
+			},
+			addPerson : function(){
+				var name = $("#name").val();
+				var person = new Global.Person();
+				person.set("name",name);
+				this.collection.add(person);
+				console.log(this.collection);
+			}
+		});
+		$().ready(function(){
+			var people = new Global.PeopleCollection();
+			
+			var personView = new Global.PeopleView({ collection : people});
+		})
+		</script>
+	</head>	
+	<body>
+		<input type="text" id="name" placeholder="Name">
+		<input type="button" value="Add" id="addbutton">
+		<input type="button" value="List All" id="listallbutton">
+		<br/>
+		<table border="1">
+			<tbody>
+			</tbody>	
+		</table>	
+	</body>	
+</html>

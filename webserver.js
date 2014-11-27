@@ -24,6 +24,9 @@ var server = http.createServer(function(request,response){
 	else if(url.match(/World/) != null){
 		getInfo(request,response);
 	}
+	else if(url.match(/people/) != null){
+		getPeople(request,response);
+	}
 	else{
 		var fileName = url.substring(1);
 		if(fileName.indexOf("?") != -1)
@@ -41,6 +44,20 @@ function sendFile(fileName,response){
 }
 server.listen(8080);
 console.log("Server is running and waiting for requests");
+
+function getPeople(request,response){
+	var data = {
+		people : [
+			{name:"Virat",age:26,country:"India"},
+			{name:"Shikar Dawan",age:28,country:"India"},
+			{name:"Rohit Sharma",age:28,country:"India"},
+			{name:"De Villiers",age:34,country:"SA"},
+			{name:"George Bailey",age:28,country:"Australia"}
+		]
+	};
+	response.end(JSON.stringify(data));
+}
+
 
 function getCricketers(request,response){
 	var data = {
