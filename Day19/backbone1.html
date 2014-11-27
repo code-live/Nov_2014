@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script src="backbone-min.js"></script>
+		<script>
+		var Global = {};
+		Global.Section1View = Backbone.View.extend({
+			el : "#sec1",
+			initialize : function(){
+				console.log("Constructor");
+			},
+			events : {
+				"click #button1" : "button1Clicked"
+			},
+			button1Clicked : function(){
+				var name = $("#name").val();
+				var msg = "Hi " + name;
+				this.model.set("message",msg);
+				this.trigger("messageready");
+			}
+		});
+		
+		Global.Section2View = Backbone.View.extend({
+			el : "#sec2",
+			displayMessage : function(){
+				$("#message").text(this.model.get("message"));
+			}
+		});
+		Global.MySectionData = Backbone.Model.extend({
+			initialize : function(){
+				this.set("message","");
+			}
+		});
+		$().ready(function(){
+			var myData = new Global.MySectionData(); 
+			var s1 = new Global.Section1View({model:myData});
+			var s2 = new Global.Section2View({model:myData});
+			s1.bind("messageready",s2.displayMessage);
+		});
+		
+		</script>
+	</head>
+	<body>
+		<section id="sec1">
+			<input type="text" id="name" placeholder="Name">
+			<input type="button" value="Click" id="button1">
+		</section>	
+		<section id="sec2">
+			<h1 id="message"></h1>
+		</section>	
+	</body>	
+</html>		
