@@ -17,12 +17,15 @@
 				var name = $("#name").val();
 				var msg = "Hi " + name;
 				this.model.set("message",msg);
-				this.trigger("messageready");
+				//this.trigger("messageready");
 			}
 		});
 		
 		Global.Section2View = Backbone.View.extend({
 			el : "#sec2",
+			initialize : function(){
+				this.listenTo(this.model,"change",this.displayMessage);
+			},
 			displayMessage : function(){
 				$("#message").text(this.model.get("message"));
 			}
@@ -36,7 +39,7 @@
 			var myData = new Global.MySectionData(); 
 			var s1 = new Global.Section1View({model:myData});
 			var s2 = new Global.Section2View({model:myData});
-			s1.bind("messageready",s2.displayMessage);
+			//s1.bind("messageready",s2.displayMessage);
 		});
 		
 		</script>

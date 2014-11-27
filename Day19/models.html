@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<script src="jquery-2.1.1.min.js"></script>
+		<script src="underscore-min.js"></script>
+		<script src="backbone-min.js"></script>
+		<script>
+		var Global = {};
+		Global.MyModel1 = Backbone.Model.extend({
+			initialize : function(){
+				this.set("name","")
+			}
+		});
+		
+		Global.MyModel2 = Backbone.Model.extend({
+			initialize : function(){
+				this.set("age","")
+			}
+		});
+		
+		Global.Section1View = Backbone.View.extend({
+			el : "#sec1",
+			model1Ref : null,
+			model2Ref : null,
+			initialize : function(cfg){
+				this.model1Ref = cfg.m1;
+				this.model2Ref = cfg.m2;
+			},
+			events : {
+				"click #button1" : "button1Clicked",
+				"click #button2" : "button2Clicked"			
+			},
+			button1Clicked : function(){
+				this.model1Ref.set("name",$("#name").val());
+			},
+			button2Clicked : function(){
+				this.model2Ref.set("age",$("#age").val());
+			}
+		});	
+		Global.Section2View = Backbone.View.extend({
+			el : "#sec2",
+			model1Ref : null,
+			model2Ref : null,
+			initialize : function(cfg){
+				this.model1Ref = cfg.m1;
+				this.model2Ref = cfg.m2;
+				this.listenTo(this.model1Ref,"change",this.displayName);
+				this.listenTo(this.model2Ref,"change",this.displayAge);
+			},
+			displayName : function(){
+				$("#message1").text("Hi " + this.model1Ref.get("name"));
+			},
+			displayAge : function(){
+				$("#message2").text("You are " + this.model2Ref.get("age") + " years old");				
+			}
+		});	
+		$().ready(function(){
+			var model1 = new Global.MyModel1();
+			var model2 = new Global.MyModel2();
+			var sec1View = new Global.Section1View({m1:model1,m2:model2});
+			var sec2View = new Global.Section2View({m1:model1,m2:model2});
+		});
+		
+		</script>
+	</head>
+	<body>
+		<section id="sec1">
+			<input type="text" id="name" placeholder="Name">
+			<input type="button" value="Click1" id="button1"><br/>
+			<input type="text" id="age" placeholder="Age">
+			<input type="button" value="Click2" id="button2">
+		</section>	
+		<section id="sec2">
+			<h1 id="message1" style="color:blue;"></h1>
+			<h1 id="message2" style="color:red;"></h1>
+		</section>	
+	</body>	
+</html>		
