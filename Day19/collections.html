@@ -24,11 +24,8 @@
 				_.each(people,function(person){
 					var obj = new Global.Person();
 					obj.set("name",person.name);
-					console.log(obj);
-					mainCollection.add(obj);
+					mainCollection.models.push(obj);
 				});
-				this.models = mainCollection.models;
-				console.log(this);
 			}
 		});
 		
@@ -40,7 +37,6 @@
 			},
 			displayPersons : function(){
 				var models = this.collection.models;
-				console.log(this.collection);
 				_.each(models,function(model){
 					$("tbody").append("<tr><td>" + model.get("name") + "</td></tr>");
 				});
